@@ -13,6 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,10 +30,32 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  overflow-x: hidden;
   min-width: 320px;
   min-height: 100vh;
+}
+
+html {
+  scrollbar-color: #526875 #0b151a;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b151a;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid #0b151a;
+  border-radius: 999px;
+  background: #526875;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7896a5;
 }
 
 h1 {

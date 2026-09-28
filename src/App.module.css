@@ -1,0 +1,8 @@
+.app {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  color: var(--card-surface);
+  background: var(--page-background);
+  transition: background-color 240ms ease, color 240ms ease;
+}

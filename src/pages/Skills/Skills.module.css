@@ -8,31 +8,245 @@
 }
 
 .card {
-  width: min(100%, 58rem);
+  width: min(100%, 62rem);
   min-height: clamp(30rem, 62vh, 40rem);
   max-height: calc(100vh - 9rem);
   box-sizing: border-box;
   padding: clamp(2rem, 6vw, 5rem);
   overflow: auto;
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   border-radius: 1.25rem;
   background: var(--card-surface);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
-  scrollbar-color: var(--accent) color-mix(in srgb, var(--accent) 10%, var(--card-surface));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  scrollbar-color: var(--accent) transparent;
   scrollbar-width: thin;
+  -ms-overflow-style: none;
 }
 
-.eyebrow,
-.number { color: var(--accent-strong); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
-.eyebrow { margin: 0; }
-.title { max-width: 12ch; margin: 1rem 0 1.25rem; color: var(--card-text); font-size: clamp(2.4rem, 7vw, 5.5rem); line-height: 0.98; letter-spacing: -0.03em; }
-.description { max-width: 38rem; margin: 0; color: var(--muted-text); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.7; }
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: clamp(2rem, 5vw, 4rem); }
-.infoBlock { padding: 1.25rem; border-top: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) 9%, var(--card-surface)); }
-.infoBlock h2 { margin: 1.5rem 0 0.5rem; color: var(--card-text); font-size: 1rem; }
-.infoBlock p { margin: 0; color: var(--muted-text); font-size: 0.9rem; line-height: 1.6; }
-.card::-webkit-scrollbar { width: 0.65rem; }
-.card::-webkit-scrollbar-track { border-radius: 999px; background: color-mix(in srgb, var(--accent) 10%, var(--card-surface)); }
-.card::-webkit-scrollbar-thumb { border: 2px solid var(--card-surface); border-radius: 999px; background: var(--accent); }
-.card::-webkit-scrollbar-thumb:hover { background: var(--accent-strong); }
-@media (max-width: 640px) { .section { min-height: calc(100vh - 6rem); padding-top: 2rem; padding-bottom: 3rem; } .card { min-height: 34rem; max-height: calc(100vh - 8rem); } .grid { grid-template-columns: 1fr; } }
+.eyebrow {
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 12ch;
+  margin: 1rem 0 1.25rem;
+  color: var(--card-text);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.description {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--muted-text);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.tab {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  color: var(--card-text);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  outline: none;
+}
+
+.activeTab {
+  background: color-mix(in srgb, var(--accent) 12%, var(--card-surface));
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--card-text);
+  box-shadow: 0 8px 18px rgba(14, 19, 26, 0.06);
+}
+
+.categoryGrid,
+.proficiencyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.categoryCard,
+.proficiencyCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--card-surface)) 0%, var(--card-surface) 100%);
+  box-shadow: 0 10px 24px rgba(12, 18, 24, 0.04);
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.categoryEmoji {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 12%, var(--card-surface));
+  font-size: 1rem;
+}
+
+.categoryHeader h2 {
+  margin: 0;
+  color: var(--card-text);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.skillItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.42rem 0.62rem;
+  border: 1px solid color-mix(in srgb, var(--skill-color) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--skill-color) 9%, var(--card-surface));
+  color: var(--card-text);
+  font-size: 0.69rem;
+  font-weight: 600;
+}
+
+.skillIcon {
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.8rem;
+}
+
+.setupSection {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.setupHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.setupEmoji {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 12%, var(--card-surface));
+  font-size: 1rem;
+}
+
+.setupHeader h2 {
+  margin: 0;
+  color: var(--card-text);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.setupList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.setupItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid color-mix(in srgb, var(--tool-color) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tool-color) 9%, var(--card-surface));
+  color: var(--card-text);
+  font-size: 0.69rem;
+  font-weight: 600;
+}
+
+.setupIcon {
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.8rem;
+}
+
+.card::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.card::-webkit-scrollbar-button,
+.card::-webkit-scrollbar-corner,
+.card::-webkit-scrollbar-button:single-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.card::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: transparent;
+}
+
+.card::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 70%, white) 0%, var(--accent) 100%);
+  background-clip: padding-box;
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-strong) 90%, white) 0%, var(--accent-strong) 100%);
+}
+
+@media (max-width: 900px) {
+  .categoryGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .section { min-height: calc(100vh - 6rem); padding-top: 2rem; padding-bottom: 3rem; }
+  .card { min-height: 34rem; max-height: calc(100vh - 8rem); }
+}

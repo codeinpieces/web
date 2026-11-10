@@ -17,7 +17,7 @@
   max-height: calc(100vh - 9rem);
   box-sizing: border-box;
   justify-content: center;
-  padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
+  padding: clamp(4.5rem, 8vw, 5.5rem) 1.5rem clamp(2.5rem, 6vw, 4.5rem);
   border: 1px solid rgba(32, 32, 32, 0.08);
   border-radius: 1.25rem;
   background: var(--card-surface);
@@ -62,8 +62,8 @@
 .socialLinks {
   display: flex;
   position: absolute;
-  top: 1.25rem;
-  left: 1.25rem;
+  top: 1.5rem;
+  left: 1.5rem;
   gap: 0.7rem;
 }
 
@@ -113,7 +113,7 @@
   }
 
   .socialLinks {
-    top: 1rem;
-    left: 1rem;
+    top: 1.25rem;
+    left: 1.25rem;
   }
 }
